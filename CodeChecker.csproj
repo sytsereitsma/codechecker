@@ -56,7 +56,7 @@
     <Compile Include="Connect.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ListJoiner.cs" />
+    <Compile Include="ArgumentListJoiner.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="ProjectSettings.cs" />
   </ItemGroup>
@@ -117,7 +117,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="C:\Users\sreitsma\Documents\Visual Studio 2010\Addins\CodeChecker - For Testing.AddIn">
+    <Content Include="C:\Users\sytse\Documents\Visual Studio 2010\Addins\CodeChecker - For Testing.AddIn">
       <Link>CodeChecker - For Testing.AddIn</Link>
     </Content>
     <Content Include="CodeChecker.AddIn" />

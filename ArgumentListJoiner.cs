@@ -5,10 +5,10 @@ using System.Text;
 
 namespace CodeChecker
 {
-    class ListJoiner
+    class ArgumentListJoiner
     {
         private string _Joined;
-        public ListJoiner(string[] inList, string inSeparator, string inPrefix)
+        public ArgumentListJoiner(string[] inList, string inSeparator, string inPrefix)
         {
             for(UInt32 t=0; t < inList.Length; t++)
             {
@@ -17,7 +17,15 @@ namespace CodeChecker
                 }
 
                 _Joined += inPrefix;
-                _Joined += inList [t];
+
+                if (inList[t].Contains(" "))
+                {
+                    _Joined += "'" + inList[t] + "'";
+                }
+                else
+                {
+                    _Joined += inList[t];
+                }
             }
         }
 
