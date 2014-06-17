@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using EnvDTE;
+using System.IO;
 
 namespace CodeChecker
 {
@@ -12,16 +13,17 @@ namespace CodeChecker
     {
         private string[] _IncludeDirs;
         private string[] _PreprocessorFlags;
+        private string _ProjectPath;
 
         public ProjectSettings (Document doc)
         {
+            _ProjectPath = Path.GetDirectoryName(doc.ProjectItem.ContainingProject.FullName);
+
             VCPE.VCCLCompilerTool compilerTool = GetCompilerTool(doc);
             if (!compilerTool.Equals(null))
             {
                 char[] delimiterChars = { ';' };
                 _IncludeDirs = MakeUniqueList(compilerTool.AdditionalIncludeDirectories, delimiterChars);
-
-                delimiterChars [0] = ' ';
                 _PreprocessorFlags = MakeUniqueList(compilerTool.PreprocessorDefinitions, delimiterChars);
             }
         }
@@ -34,6 +36,11 @@ namespace CodeChecker
         internal string[] PreprocessorFlags
         {
             get { return _PreprocessorFlags; }
+        }
+
+        internal string ProjectPath
+        {
+            get { return _ProjectPath; }
         }
         
         private string[] MakeUniqueList(string inList, char[] inDelimiterChars)
