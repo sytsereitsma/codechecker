@@ -116,7 +116,7 @@ namespace CodeChecker
 
             if (Directory.Exists(abspath))
             {
-                return abspath;
+                return abspath.Replace("\\", "/");
             }
 
             return null;
@@ -137,7 +137,7 @@ namespace CodeChecker
 
             if (File.Exists(abspath))
             {
-                return abspath;
+                return abspath.Replace("\\", "/");
             }
 
             return null;

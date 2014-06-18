@@ -20,7 +20,7 @@ namespace CodeChecker
 
                 if (inList[t].Contains(" "))
                 {
-                    _Joined += "'" + inList[t] + "'";
+                    _Joined += "\"" + inList[t] + "\"";
                 }
                 else
                 {
