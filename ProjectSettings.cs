@@ -23,10 +23,10 @@ namespace CodeChecker
             if (!compilerTool.Equals(null))
             {
                 LoadIncludeDirectories(compilerTool, Path.GetDirectoryName(doc.FullName));
+                LoadForcedIncludes(compilerTool, Path.GetDirectoryName(doc.FullName));
 
                 char[] delimiterChars = { ';' };
-                _PreprocessorFlags = MakeUnique(StringToList(compilerTool.PreprocessorDefinitions, delimiterChars));
-                _ForceIncludes = MakeUnique(StringToList(compilerTool.ForcedIncludeFiles + ";limits.h", delimiterChars));
+                 _PreprocessorFlags = MakeUnique(StringToList(compilerTool.PreprocessorDefinitions, delimiterChars));
             }
         }
 
@@ -70,7 +70,8 @@ namespace CodeChecker
         private void LoadIncludeDirectories(VCPE.VCCLCompilerTool compilerTool, string inDocumentPath)
         {
             char[] delimiterChars = { ';' };
-            string[] includeDirs = StringToList(compilerTool.FullIncludePath, delimiterChars);
+            //Don't use compilerTool.FullIncludePath here. Otherwise CppCheck takes ages, because all system includes are checked as well.
+            string[] includeDirs = StringToList(compilerTool.AdditionalIncludeDirectories, delimiterChars);
             List<string> finalDirs = new List<string>();
             for (UInt32 t = 0; t < includeDirs.Length; ++t)
             {

@@ -68,6 +68,11 @@ namespace CodeChecker
             }
         }
 
+        internal void Clear()
+        {
+            if (logtoOutputWindow)
+                outputWindowPane.Clear ();
+        }
         /// <summary>
         /// Log trace
         /// </summary>
